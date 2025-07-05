@@ -27,4 +27,13 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: 'Internal server error' });
 });
 
+app.get('/', (req, res) => {
+  res.send('🚀 E-commerce Backend is live!');
+});
+
+
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', timestamp: Date.now() });
+});
+
 module.exports = app;
