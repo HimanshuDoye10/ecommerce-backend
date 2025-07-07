@@ -4,6 +4,7 @@ const authRoutes = require('./auth.route');
 const productRoutes = require('./product.route');
 const bannerRoutes = require('./banner.route');
 const addressRoutes = require('./address.route');
+const orderRoutes = require('./order.route');
 
 
 // Health check endpoint
@@ -19,6 +20,7 @@ router.use('/products', productRoutes);  // Changed from '/api/v1'
 router.use('/banners', bannerRoutes);
 
 router.use('/addresses', addressRoutes);
+router.use('/orders', orderRoutes);
 
 
 module.exports = router;
