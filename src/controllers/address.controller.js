@@ -82,3 +82,12 @@ exports.deleteAddress = catchAsyncErrors(async (req, res, next) => {
     message: 'Address is deleted'
   });
 });
+
+exports.getAddressesByUserId = catchAsyncErrors(async (req, res, next) => {
+  const addresses = await Address.find({ user: req.params.userId });
+  
+  res.status(200).json({
+    success: true,
+    addresses
+  });
+});

@@ -92,3 +92,16 @@ exports.getOrder = catchAsyncErrors(async (req, res, next) => {
     order
   });
 });
+
+// Get all orders for a specific user (Admin only)
+exports.getOrdersByUserId = catchAsyncErrors(async (req, res, next) => {
+  const orders = await Order.find({ user: req.params.userId })
+    .populate('user', 'name email')
+    .populate('orderItems.product', 'name price images')
+    .populate('shippingAddress');
+
+  res.status(200).json({
+    success: true,
+    orders
+  });
+});

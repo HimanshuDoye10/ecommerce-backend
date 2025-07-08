@@ -10,5 +10,8 @@ router.get('/', isAuthenticatedUser, addressController.getMyAddresses);
 router.get('/:id', isAuthenticatedUser, addressController.getAddress);
 router.put('/:id', isAuthenticatedUser, validateAddress, addressController.updateAddress);
 router.delete('/:id', isAuthenticatedUser, addressController.deleteAddress);
-
+router.get('/user/:userId',
+    isAuthenticatedUser,
+    addressController.getAddressesByUserId
+);
 module.exports = router;
