@@ -105,3 +105,18 @@ exports.getOrdersByUserId = catchAsyncErrors(async (req, res, next) => {
     orders
   });
 });
+
+// Get all orders (Admin only)
+exports.getAllOrders = catchAsyncErrors(async (req, res, next) => {
+  const orders = await Order.find()
+    .populate('user', 'name email')
+    .populate('orderItems.product', 'name price images')
+    .populate('shippingAddress')
+    .sort({ createdAt: -1 }); // Sort by newest first
+
+  res.status(200).json({
+    success: true,
+    count: orders.length,
+    orders
+  });
+});
